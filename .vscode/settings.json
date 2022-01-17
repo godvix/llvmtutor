@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "*.def": "cpp"
+        "*.def": "cpp",
+        "iostream": "cpp",
+        "system_error": "cpp"
     }
 }
