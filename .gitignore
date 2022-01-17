@@ -6,3 +6,4 @@ example/decode
 
 llvm-tutor/inject_func_call/input_for_hello
 llvm-tutor/dynamic_call_counter/input_for_cc
+llvm-tutor/mba_sub/input_for_mba_sub
