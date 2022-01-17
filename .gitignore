@@ -3,3 +3,5 @@ bin
 
 example/encode
 example/decode
+
+llvm-tutor/inject_func_call/input_for_hello
