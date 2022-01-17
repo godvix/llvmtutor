@@ -1,0 +1,5 @@
+bin
+*.ll
+
+example/encode
+example/decode
