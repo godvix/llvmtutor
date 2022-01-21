@@ -1,7 +1,8 @@
 #include "riv.h"
 using namespace llvm;
 
-static void PrintRivResult(raw_ostream& out_stream, const RivResult& riv_map);
+static void PrintRivResult(raw_ostream& out_stream,
+                           const riv::RivResult& riv_map);
 
 int main(int argc, char** argv) {
   LLVMContext context;
@@ -12,7 +13,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  RunOnModule(*owner);
+  riv::RunOnModule(*owner);
 
   if (verifyModule(*owner, &errs())) {
     errs() << "Generated module is not correct!\n";
@@ -24,17 +25,17 @@ int main(int argc, char** argv) {
   return 0;
 }
 
-void RunOnModule(Module& module) {
+void riv::RunOnModule(Module& module) {
   for (auto& func : module) RunOnFunction(func);
 }
 
-void RunOnFunction(Function& func) {
+void riv::RunOnFunction(Function& func) {
   auto dominator_tree = DominatorTree(func);
   RivResult res = BuildRiv(func, dominator_tree.getRootNode());
   PrintRivResult(errs(), res);
 }
 
-RivResult BuildRiv(Function& func, NodeType cfg_root) {
+riv::RivResult riv::BuildRiv(Function& func, NodeType cfg_root) {
   RivResult result_map;
 
   // Initialise a double-ended queue that will be used to traverse all basic
@@ -96,7 +97,8 @@ RivResult BuildRiv(Function& func, NodeType cfg_root) {
   return result_map;
 }
 
-static void PrintRivResult(raw_ostream& out_stream, const RivResult& riv_map) {
+static void PrintRivResult(raw_ostream& out_stream,
+                           const riv::RivResult& riv_map) {
   out_stream << "=================================================\n";
   out_stream << "LLVM-TUTOR: RIV analysis results\n";
   out_stream << "=================================================\n";
