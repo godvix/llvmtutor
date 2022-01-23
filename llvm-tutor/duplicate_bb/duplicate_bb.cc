@@ -159,16 +159,16 @@ void duplicate_bb::CloneBB(BasicBlock& bb, Value* context_value,
 
   // Create the condition for 'if-then-else'
   IRBuilder<> builder(bb_head);
-  auto* conditon = builder.CreateIsNull(re_mapper.count(context_value)
-                                            ? re_mapper[context_value]
-                                            : context_value);
+  auto* condition = builder.CreateIsNull(re_mapper.count(context_value)
+                                             ? re_mapper[context_value]
+                                             : context_value);
 
   // Create and insert the 'if-else' blocks. At this point both blocks are
   // trivial and contain only one terminator instruction branching to BB's tail,
   // which contains all the instructions from BBHead onwards.
   Instruction* then_term = nullptr;
   Instruction* else_term = nullptr;
-  SplitBlockAndInsertIfThenElse(conditon, bb_head, &then_term, &else_term);
+  SplitBlockAndInsertIfThenElse(condition, bb_head, &then_term, &else_term);
   auto* tail = then_term->getSuccessor(0);
 
   assert(tail == else_term->getSuccessor(0) && "Inconsistent CFG");

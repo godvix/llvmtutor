@@ -11,7 +11,6 @@ TARGET = input_for_duplicate_bb
 
 all: before_build $(PROGS) IR
 	$(BIN_PATH)/$(PROGS) $(TARGET).ll
-	# clang $(TARGET).ll -o $(BIN_PATH)/$(TARGET)
 
 before_build:
 	mkdir -p $(BIN_PATH)
