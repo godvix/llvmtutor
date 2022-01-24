@@ -27,4 +27,4 @@ normal: before_build
 	clang $(TARGET).c -o $(BIN_PATH)/$(TARGET)
 
 IR:
-	clang -S -emit-llvm $(TARGET).c -o $(TARGET).ll
+	clang -S -emit-llvm -O0 $(TARGET).c -o $(TARGET).ll
