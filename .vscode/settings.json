@@ -2,6 +2,10 @@
     "files.associations": {
         "*.def": "cpp",
         "iostream": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "string.h": "c",
+        "*.tcc": "cpp",
+        "istream": "cpp",
+        "*.inc": "cpp"
     }
 }
